@@ -1,0 +1,233 @@
+{% doc %}
+  @prompt
+    An image with a text overlay on the bottom left corner of the card. The whole image should link to a blog category. The image should expand very slightly on hover., the width should fill the container
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-card-{{ ai_gen_id }} {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    width: 100%;
+  }
+
+  .ai-image-card-{{ ai_gen_id }}:hover {
+    transform: scale(1.02);
+  }
+
+  .ai-image-card-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+  }
+
+  .ai-image-card-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-image-card-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-image-card-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .ai-image-card-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, {{ block.settings.overlay_color }});
+    padding: {{ block.settings.overlay_padding }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-image-card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  .ai-image-card-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    margin: 0;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-card-wrapper-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height | times: 0.8 }}px;
+    }
+
+    .ai-image-card-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.9 }}px;
+    }
+
+    .ai-image-card-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<a
+  href="{{ block.settings.blog.url }}"
+  class="ai-image-card-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  {% if block.settings.title != blank %}
+    aria-label="{{ block.settings.title | escape }}"
+  {% endif %}
+><div class="ai-image-card-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.image %}
+      <img
+        src="{{ block.settings.image | image_url: width: 800 }}"
+        alt="{{ block.settings.image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.image.width }}"
+        height="{{ block.settings.image.height }}"
+        class="ai-image-card-image-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-image-card-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+
+    <div class="ai-image-card-overlay-{{ ai_gen_id }}">
+      {% if block.settings.title != blank %}
+        <h3 class="ai-image-card-title-{{ ai_gen_id }}">{{ block.settings.title }}</h3>
+      {% endif %}
+      {% if block.settings.description != blank %}
+        <p class="ai-image-card-description-{{ ai_gen_id }}">{{ block.settings.description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</a>
+
+{% schema %}
+{
+  "name": "Blog category card",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 200,
+      "max": 500,
+      "step": 20,
+      "unit": "px",
+      "label": "Image height",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Blog Category"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover our latest articles and insights"
+    },
+    {
+      "type": "header",
+      "content": "Text overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "rgba(0,0,0,0.6)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "overlay_padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Overlay padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog category card"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

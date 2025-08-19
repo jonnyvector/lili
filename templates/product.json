@@ -140,11 +140,93 @@
               },
               "blocks": {}
             },
+            "popup_link_KDnbV6": {
+              "type": "popup-link",
+              "name": "t:names.popup_link",
+              "settings": {
+                "behavior": "default",
+                "heading": "What's my size?",
+                "type_preset": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_ycQAF6": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Please Note:  The size guide is intended for use as a general guideline. Sizing and fit may vary somewhat by different styles.</p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "size_chart_nzVKjY": {
+                  "type": "size-chart",
+                  "name": "Size Chart",
+                  "settings": {
+                    "padding-block-start": 16,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_8HiQV3": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><strong>Need help with or can't find your size?  </strong> Just hit the chat button in the lefthand corner or email us at <a href=\"mailto:hello@lilinguyen.com\">hello@lilinguyen.com</a> for further assistance.</p><p></p><p><strong>TIPS TO ASSURE THE BEST FIT</strong></p><p><strong>BUST</strong>  With arms at sides, place tape measure under your arms and run it around the fullest part of the bustline and across the shoulder blades.</p><p><strong>NATURAL WAIST  </strong>Find the natural crease of your waist by bending to one side. Run tape measure around your natural waistline, keeping one finger between the tape and your body for a comfortable fit.</p><p><strong>LOW WAIST  </strong>Run tape measure about 2 to 3 inches below your natural waistline, keeping one finger between the tape and your body for a comfortable fit.</p><p><strong>HIPS  </strong>With feet together, run tape measure around the fullest part of your hips/seat, about 7 to 8 inches below your waistline.</p><p><strong>INSEAM  </strong>For full-length pants, run tape measure along the inside of your leg, from just below the crotch to about 1 inch below the ankle.</p><p><strong>HEAD  </strong>Run tape measure around your head, just above the brow line.</p><p><strong>HANDS  </strong>Run tape measure around the circumference of your hand at the knuckles. Do not include the thumb.</p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 12,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ycQAF6",
+                "size_chart_nzVKjY",
+                "text_8HiQV3"
+              ]
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
                 "stacking": false,
                 "show_pickup_availability": false,
+                "gift_card_form": true,
                 "padding-block-start": 0,
                 "padding-block-end": 24,
                 "padding-inline-start": 0,
@@ -180,7 +262,7 @@
               "name": "t:names.accordion",
               "settings": {
                 "icon": "caret",
-                "dividers": true,
+                "dividers": false,
                 "type_preset": "h6",
                 "inherit_color_scheme": true,
                 "color_scheme": "",
@@ -233,10 +315,50 @@
                     "text_n7A9da"
                   ]
                 },
+                "accordion_row_3cChLa": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "Details",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_DTpLgf": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.metafields.custom.details | metafield_tag }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_DTpLgf"
+                  ]
+                },
                 "accordion_row_iJM37V": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Care",
+                    "heading": "Shipping and Returns",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -271,51 +393,12 @@
                   "block_order": [
                     "text_VdG98J"
                   ]
-                },
-                "accordion_row_pLFDcD": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Design",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_qLGEN9": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Our dedication to excellence extends beyond materials; it encompasses the artistry and craftsmanship illustrated in every piece we create.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-secondary--family)",
-                        "font_size": "var(--font-size--body-lg)",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 12,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_qLGEN9"
-                  ]
                 }
               },
               "block_order": [
                 "accordion_row_NdBezV",
-                "accordion_row_iJM37V",
-                "accordion_row_pLFDcD"
+                "accordion_row_3cChLa",
+                "accordion_row_iJM37V"
               ]
             }
           },
@@ -324,11 +407,15 @@
             "price_a7krng",
             "divider_HrJgFt",
             "variant_picker_R3rGDr",
+            "popup_link_KDnbV6",
             "buy_buttons_eYQEYi",
             "accordion_NKWPiW"
           ]
         }
       },
+      "custom_css": [
+        ".dialog-modal {max-width: 850px;}"
+      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -391,7 +478,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
-                "image_ratio": "portrait",
+                "image_ratio": "adapt",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -625,10 +712,124 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "section_4EPDRq": {
+      "type": "section",
+      "blocks": {
+        "text_mCcUyh": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h4>I want exclusive updates on new arrivals,<br/>promos and events!</h4>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_At7hFw": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Be the first to know about new collections and special offers. </p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "email_signup_TwFtrH": {
+          "type": "email-signup",
+          "settings": {
+            "width": "custom",
+            "custom_width": 50,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border_style": "underline",
+            "border_width": 1,
+            "border_radius": 0,
+            "input_type_preset": "paragraph",
+            "style_class": "button-unstyled",
+            "display_type": "arrow",
+            "label": "Sign Up",
+            "integrated_button": true,
+            "button_type_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_mCcUyh",
+        "text_At7hFw",
+        "email_signup_TwFtrH"
+      ],
+      "name": "t:names.email_signup",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-3",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
     }
   },
   "order": [
     "main",
-    "product_recommendations_qnzPkn"
+    "product_recommendations_qnzPkn",
+    "section_4EPDRq"
   ]
 }

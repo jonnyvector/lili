@@ -25,10 +25,7 @@
     class="popup-link__content dialog-modal color-{{ settings.popover_color_scheme }}{% if block_settings.behavior == 'drawer' %} popup-link__content--drawer dialog-drawer{% endif %}"
     scroll-lock
   >
-    <div class="popup-link__inner">
-      {% content_for 'blocks' %}
-    </div>
-    <button
+  <button
       ref="closeButton"
       on:click="/closeDialog"
       class="button button-unstyled close-button popup-link__close"
@@ -36,6 +33,10 @@
     >
       {{- 'icon-close.svg' | inline_asset_content -}}
     </button>
+    <div class="popup-link__inner">
+      {% content_for 'blocks' %}
+    </div>
+    
   </dialog>
 </dialog-component>
 

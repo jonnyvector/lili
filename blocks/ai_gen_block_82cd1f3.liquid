@@ -1,0 +1,278 @@
+{% doc %}
+  @prompt
+    icon upload with rich text underneath. icon should go up to at least 160px width
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-icon-text-block-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: {{ block.settings.alignment }};
+    text-align: {{ block.settings.alignment }};
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    gap: {{ block.settings.spacing }}px;
+  }
+
+  .ai-icon-container-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_width }}px;
+    height: {{ block.settings.icon_width }}px;
+    flex-shrink: 0;
+  }
+
+  .ai-icon-container-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    border: 2px dashed #cccccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+  }
+
+  .ai-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 40px;
+    height: 40px;
+    color: #999999;
+  }
+
+  .ai-icon-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} h1,
+  .ai-text-content-{{ ai_gen_id }} h2,
+  .ai-text-content-{{ ai_gen_id }} h3,
+  .ai-text-content-{{ ai_gen_id }} h4,
+  .ai-text-content-{{ ai_gen_id }} h5,
+  .ai-text-content-{{ ai_gen_id }} h6 {
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 16px 0;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} p {
+    margin: 0 0 16px 0;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: underline;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} a:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-icon-text-block-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding | times: 0.7 }}px;
+    }
+
+    .ai-icon-container-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_width | times: 0.8 }}px;
+      height: {{ block.settings.icon_width | times: 0.8 }}px;
+    }
+
+    .ai-text-content-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}<div
+  class="ai-icon-text-block-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-icon-container-{{ ai_gen_id }}">
+    {% if block.settings.icon %}
+      <img
+        src="{{ block.settings.icon | image_url: width: 320 }}"
+        alt="{{ block.settings.icon.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.icon_width }}"
+        height="{{ block.settings.icon_width }}"
+      >
+    {% else %}
+      <div class="ai-icon-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}<div class="ai-icon-empty-state-{{ ai_gen_id }}">
+          Upload an icon
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.content != blank %}
+    <div class="ai-text-content-{{ ai_gen_id }}">
+      {{ block.settings.content }}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Icon with text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon image"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Icon width",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text content",
+      "default": "<h3>Feature title</h3><p>Add your description text here. You can include multiple paragraphs and formatting.</p>"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Spacing between icon and text",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon with text"
+    }
+  ]
+}
+{% endschema %}

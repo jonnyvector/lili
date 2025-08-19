@@ -48,12 +48,13 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
         "color_scheme": "",
-        "padding-block-start": 64,
-        "padding-block-end": 80
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "section_LygNht": {
@@ -105,7 +106,6 @@
         "text_7aaKiH",
         "button_aXnYMG"
       ],
-      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
