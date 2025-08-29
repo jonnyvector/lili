@@ -856,7 +856,7 @@
           "settings": {
             "icon": "shopify://shop_images/biodegradable.svg",
             "icon_width": 160,
-            "content": "<h4>BIO<br/>DEGRADABLE</h4>",
+            "content": "<h4>Naturally<br/>BIO<br/>DEGRADABLE</h4>",
             "alignment": "center",
             "spacing": 20,
             "background_color": "#ffffff",
